@@ -1,0 +1,10 @@
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: 'GitHub username'
+        required: true
+      reason:
+        description: 'Why are you running this workflow?'
+        required: true
+        default: 'I want to run it now!'
