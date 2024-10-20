@@ -1,0 +1,14 @@
+name: "Display branch name"
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  new_pull_request:
+    runs-on: ubuntu-latest
+    env:
+      CURRENT_BRANCH: ${{ github.head_ref || github.ref_name }}
+    steps:
+      - run: >
+          echo "New pull request '$CURRENT_BRANCH' was created"
