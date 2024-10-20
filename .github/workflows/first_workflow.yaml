@@ -1,3 +1,4 @@
+name: First manual workflow
 on:
   workflow_dispatch:
     inputs:
@@ -8,3 +9,10 @@ on:
         description: 'Why are you running this workflow?'
         required: true
         default: 'I want to run it now!'
+jobs:
+  test_manual_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - run: >
+          echo "User ${{ github.event.inputs.username}} ran a workflow manually."
+          echo "Reason: ${{ github.event.inputs.reason}}"
