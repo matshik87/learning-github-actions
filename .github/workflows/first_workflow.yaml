@@ -11,11 +11,13 @@ on:
         default: 'I want to run it now!'
 jobs:
   test_manual_workflow:
+    environment: develop
     runs-on: ubuntu-latest
     steps:
       - run: >
           echo "User ${{ github.event.inputs.username}} ran a workflow manually."
           echo "Reason: ${{ github.event.inputs.reason}}"
+          echo "Variable: ${{ vars.TEST_VARIABLE}}"
   another_action:
     needs: [test_manual_workflow]
     runs-on: ubuntu-latest
