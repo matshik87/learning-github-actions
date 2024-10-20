@@ -6,9 +6,11 @@ on:
 
 jobs:
   new_pull_request:
+    environment: develop
     runs-on: ubuntu-latest
     env:
       CURRENT_BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
       - run: >
           echo "New pull request '$CURRENT_BRANCH' was created"
+          echo "Obtaining env variable '${{ vars.TEST_VARIABLE }}' was created"
