@@ -16,3 +16,9 @@ jobs:
       - run: >
           echo "User ${{ github.event.inputs.username}} ran a workflow manually."
           echo "Reason: ${{ github.event.inputs.reason}}"
+  another_action:
+    needs: [test_manual_workflow]
+    runs-on: ubuntu-latest
+    steps:
+      - run: >
+          echo "Running another step for ${{ github.events.inputs.username}}"
