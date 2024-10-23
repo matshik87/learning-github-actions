@@ -1,9 +1,10 @@
-name: Auto assign a new PR
+name: Prepare new PR
 on:
   pull_request:
     types: [ opened, edited, reopened ]
 jobs:
   auto-assign:
+    name: 'Auto-assignment'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -12,4 +13,12 @@ jobs:
         uses: pozil/auto-assign-issue@v2
         with:
           repo-token: ${{ secrets.TECHNICAL_USER_TOKEN }}
-          assignees: ${{ GITHUB_ACTOR }}
+          assignees: ${{ github.event.pull_request.user.login }}
+  label-pr:
+    name: 'Adding label'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/labeler@v5
