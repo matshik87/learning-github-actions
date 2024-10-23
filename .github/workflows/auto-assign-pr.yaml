@@ -1,0 +1,15 @@
+name: Auto assign a new PR
+on:
+  pull_request:
+    types: [ opened, edited, reopened ]
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: 'Auto-assign assignee'
+        uses: pozil/auto-assign-issue@v2
+        with:
+          repo-token: ${{ secrets.TECHNICAL_USER_TOKEN }}
+          assignees: matshik87
