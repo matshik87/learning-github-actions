@@ -14,6 +14,8 @@ jobs:
         with:
           repo-token: ${{ secrets.TECHNICAL_USER_TOKEN }}
           assignees: ${{ github.event.pull_request.user.login }}
+        run: |
+          echo ${{ github.event.pull_request.user.login }}
   label-pr:
     name: 'Adding label'
     runs-on: ubuntu-latest
