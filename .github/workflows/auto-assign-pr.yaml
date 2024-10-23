@@ -12,4 +12,4 @@ jobs:
         uses: pozil/auto-assign-issue@v2
         with:
           repo-token: ${{ secrets.TECHNICAL_USER_TOKEN }}
-          assignees: ${{ GITHUB_ACTOR }}
+          assignees: ${{ github.event.pull_request.user.login }}
