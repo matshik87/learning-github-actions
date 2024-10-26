@@ -1,0 +1,18 @@
+name: "Hello from JS"
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        name: 'Prepare npm'
+        with:
+          node-version: 20
+      - run: npm install .github/workflows/actions/greeting
+      - name: 'hello-action'
+        uses: ./.github/workflows/actions/greeting
+      - name: 'finishing'
+        run: echo "good bye"
