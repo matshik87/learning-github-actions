@@ -20,5 +20,5 @@ outputs:
   last-one-greeting:
     description: 'the person greeted last'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'index.js'
