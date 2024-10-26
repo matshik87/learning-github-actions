@@ -9,4 +9,4 @@ jobs:
       - name: 'hi there'
         uses: actions/checkout@v3
       - name: 'hello-action'
-        uses: ./.github/workflows/actions/hello-github.yaml
+        uses: './.github/workflows/actions/hello-github.yaml'
