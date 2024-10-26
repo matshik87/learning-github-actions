@@ -7,8 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: |
-          npm install .github/workflows/actions/greeting
+      - uses: actions/setup-node@v4
+        name: 'Prepare npm'
+        with:
+          node-version: 16
+      - run: npm install .github/workflows/actions/greeting
       - name: 'hello-action'
         uses: ./.github/workflows/actions/greeting
       - name: 'finishing'
