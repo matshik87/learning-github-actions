@@ -1,0 +1,24 @@
+name: 'greeting javascript action'
+description: 'simple greet with GitHub'
+inputs:
+  first-greeting:
+    description: 'who would you like to greet?'
+    required: true
+    default: 'Hubot'
+  second-greeting:
+    description: 'yet another person to greet'
+    required: true
+    default: 'Mona'
+  third-greeting:
+    description: 'a third greeting'
+    required: true
+    default: ${{ github.event.pull_request.user.login }}
+  last-one-greeting:
+    description: 'the person greeted last'
+
+outputs:
+  last-one-greeting:
+    description: 'the person greeted last'
+runs:
+  using: 'node12'
+  main: 'index.js'
