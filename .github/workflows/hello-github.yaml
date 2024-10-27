@@ -13,8 +13,8 @@ jobs:
         name: 'Prepare npm'
         with:
           node-version: 20
-      - run: npm install $greeting-path
+      - run: npm install ${{ greeting-path }}
       - name: 'hello-action'
-        uses: ./$greeting-path
+        uses: ./${{ greeting-path }}
       - name: 'finishing'
         run: echo "good bye"
