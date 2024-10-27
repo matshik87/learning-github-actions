@@ -9,6 +9,7 @@ jobs:
       greeting-path: .github/workflows/actions/greeting
     steps:
       - uses: actions/checkout@v3
+      - run: echo $greeting-path
       - uses: actions/setup-node@v4
         name: 'Prepare npm'
         with:
@@ -16,6 +17,6 @@ jobs:
           node-version-file: $greeting-path
       - run: npm install
       - name: 'hello-action'
-        uses: "./$greeting-path"
+        uses: ./$greeting-path
       - name: 'finishing'
         run: echo "good bye"
