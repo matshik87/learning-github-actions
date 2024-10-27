@@ -5,14 +5,16 @@ on:
 jobs:
   hello-world:
     runs-on: ubuntu-latest
+    env:
+      greeting-path: .github/workflows/actions/greeting
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v4
         name: 'Prepare npm'
         with:
           node-version: 20
-      - run: npm install .github/workflows/actions/greeting
+      - run: npm install $greeting-path
       - name: 'hello-action'
-        uses: ./.github/workflows/actions/greeting
+        uses: ./$greeting-path
       - name: 'finishing'
         run: echo "good bye"
