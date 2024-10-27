@@ -1,0 +1,29 @@
+name: Run docker-based flow
+on:
+#  issues:
+#    types: [opened, edited, labeled]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-image:
+    if: github.repository == 'unexistent/never'
+    runs-on: self-hosted
+    name: build docker image
+    env:
+      IMAGE_TAG: test-image
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "RUN_IMAGE=${IMAGE_TAG}:latest" >> $GITHUB_ENV
+        shell: bash
+      - run: docker build . -t ${IMAGE_TAG}:latest -f .github/workflows/actions/docker-action
+        name: Build docker image
+      - name: Run docker action
+        uses: ./.github/workflows/actions/docker-action
+  user-and-time:
+    runs-on: self-hosted
+    needs: [ build-image ]
+    name: Running a simple Bash script inside docker
+    steps:
+      - name: Run docker action
+        uses: ./.github/workflows/actions/docker-action

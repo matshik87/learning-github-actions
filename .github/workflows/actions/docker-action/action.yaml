@@ -1,0 +1,5 @@
+name: Running Docker action
+description: Runs a custom docker action
+runs:
+  using: 'docker'
+  image: ${RUN_IMAGE}
