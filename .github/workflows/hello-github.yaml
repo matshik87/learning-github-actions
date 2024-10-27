@@ -13,8 +13,9 @@ jobs:
         name: 'Prepare npm'
         with:
           node-version: 20
-      - run: npm install ${{ greeting-path }}
+          node-version-file: $greeting-path
+      - run: npm install
       - name: 'hello-action'
-        uses: ./${{ greeting-path }}
+        uses: "./$greeting-path"
       - name: 'finishing'
         run: echo "good bye"
