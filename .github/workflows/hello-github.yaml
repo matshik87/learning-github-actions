@@ -15,6 +15,6 @@ jobs:
           node-version: 20
       - run: npm install "${GREETING_PATH}"
       - name: 'hello-action'
-        uses: ./${GREETING_PATH}
+        uses: "./${GREETING_PATH}"
       - name: 'finishing'
         run: echo "good bye"
