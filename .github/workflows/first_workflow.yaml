@@ -8,7 +8,7 @@ on:
       logLevel:
         description: Log level
         default: 'warning'
-        type: boolean
+        type: choice
         options:
           - info
           - warning
