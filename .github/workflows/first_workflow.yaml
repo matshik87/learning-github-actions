@@ -1,0 +1,35 @@
+name: Workflow with display
+on:
+  workflow_dispatch:
+    inputs:
+      homedrive:
+        description: A path
+        required: true
+      logLevel:
+        description: Log level
+        default: 'warning'
+        type: boolean
+        options:
+          - info
+          - warning
+          - debug
+      environ:
+        description: Selected environment
+        type: environment
+        required: true
+      tag:
+        description: Tag to be used
+        required: true
+        type: boolean
+
+jobs:
+  print-result:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Homedrive: ${{ inputs.homedrive }}"
+          echo "Log level: ${{ inputs.logLevel }}"
+          echo "Used environment: ${{ inputs.environ }}"
+          echo "Tag: ${{ inputs.tag }}"
+        name: "Workflow inputs"
+        if: ${{ github.event_name == 'workflow_dispatch' }}
