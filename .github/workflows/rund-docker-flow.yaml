@@ -1,0 +1,25 @@
+name: Run docker workflow
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Run docker action
+        id: docker-action
+        uses: ./.github/actions/docker-action
+        with:
+          who-to-greet: ${{ github.actor }}
+      - name: Output the answer
+        run: |
+          echo "The answer: ${{ steps.docker-action.answer }}"
+          echo "Run in process: ${{ steps.docker-action.pid }}"
+          echo "Home dir: ${{ steps.docker-action.ls }}"
+        shell: bash
+      - name: Test the container
+        if: ${{ steps.docker-action.answer == 42}}
+        run: |
+          echo ""::warning title=All was executed as expected ::The docker action was executed"
