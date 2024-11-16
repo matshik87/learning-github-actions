@@ -1,0 +1,15 @@
+name: Fancy job
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  add-summary:
+    name: Job Summary
+    runs-on: ubuntu-latest
+    steps:
+      - name: run and forget
+        run: |
+          echo "### Hello World! :rocket:" >> "$GITHUB_STEP_SUMMARY"
+          echo "### I HATE IT! :medal_sports:" >> "$GITHUB_STEP_SUMMARY"
+          echo "<b>Sth</b>" >> "$GITHUB_STEP_SUMMARY"
