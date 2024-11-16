@@ -14,6 +14,8 @@ jobs:
           echo "Secret: $the_secret"
           echo "::add-mask::$the_secret"
           echo "secret_number=$the_secret" >> "$GITHUB_OUTPUT"
+          echo "action_state=\"oh yes we can!\"" >> "$GITHUB_ENV"
       - name: Use the output from previous step
         run: |
           echo "secret: '${{ steps.create-output.outputs.secret_number }}'"
+          echo "action: '${{ env.action_state }}'"
