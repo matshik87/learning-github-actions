@@ -1,0 +1,19 @@
+name: A workflow with output
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  generate-output:
+    runs-on: ubuntu-latest
+    steps:
+      - id: create-output
+        name: Generate an output
+        run: |
+          the_secret=$((RANDOM))
+          echo "Secret: $the_secret"
+          echo "::add-mask::$the_secret"
+          echo "secret_number=$the_secret" >> "$GITHUB_OUTPUT"
+      - name: Use the output from previous step
+        run: |
+          echo "secret: '${{ steps.create-output.outputs.secret_number }}'"
