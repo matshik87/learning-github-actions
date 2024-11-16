@@ -7,13 +7,13 @@ jobs:
   generate-output:
     runs-on: ubuntu-latest
     steps:
-      - id: first
+      - id: create-output
         name: Generate an output
         run: |
           the_secret=$((RANDOM))
           echo "Secret: $the_secret"
           echo "::add-mask::$the_secret"
-          echo "secret_number=$the_secret" >> $GITHUB_OUTPUT
+          echo "secret_number=$the_secret" >> "$GITHUB_OUTPUT"
       - name: Use the output from previous step
         run: |
-          echo "secret: ${{ steps.first.secret_number }}"
+          echo "secret: '${{ steps.create-output.secret_number }}''"
