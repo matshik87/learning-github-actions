@@ -1,0 +1,19 @@
+name: Docker action
+description: An action utilizing docker image
+inputs:
+  who-to-greet:
+    description: Who to greet?
+    required: true
+    default: 'World'
+
+outputs:
+  answer:
+    description: The answer is always 42
+  pid:
+    description: process id
+
+runs:
+  using: docker
+  image: answer.dockerfile
+  args:
+    - ${{ inputs.who-to-greet }}
