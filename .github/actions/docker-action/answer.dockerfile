@@ -1,8 +1,8 @@
 FROM alpine:3.20.3
 
-WORKDIR /app
 COPY entrypoint.sh /
+RUN pwd; ls -la; find . -name "entrypoint.sh"
 
-RUN chmod +x /app/entrypoint.sh
+RUN chmod +x entrypoint.sh
 
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

@@ -5,9 +5,13 @@ inputs:
     description: Who to greet?
     required: true
     default: 'World'
+
 outputs:
-  answer: # id of output
-  description: 'The answer is always 42'
+  answer:
+    description: The answer is always 42
+  pid:
+    description: process id
+
 runs:
   using: docker
   image: answer.dockerfile

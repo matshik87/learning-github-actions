@@ -1,6 +1,7 @@
 name: Run docker workflow
 on:
-  workflow_dispatch:
+#  workflow_dispatch:
+  push:
 
 jobs:
   test:
@@ -15,11 +16,10 @@ jobs:
           who-to-greet: ${{ github.actor }}
       - name: Output the answer
         run: |
-          echo "The answer: ${{ steps.docker-action.answer }}"
-          echo "Run in process: ${{ steps.docker-action.pid }}"
-          echo "Home dir: ${{ steps.docker-action.ls }}"
-        shell: bash
+          echo "The answer: ${{ steps.docker-action.outputs.answer }}"
+          echo "Run in process: ${{ steps.docker-action.outputs.pid }}"
+          echo "Home dir: ${{ steps.docker-action.outputs.ls }}"
       - name: Test the container
-        if: ${{ steps.docker-action.answer == 42}}
+        if: ${{ steps.docker-action.outputs.answer == 42}}
         run: |
           echo ""::warning title=All was executed as expected ::The docker action was executed"

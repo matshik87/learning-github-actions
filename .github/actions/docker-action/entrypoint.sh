@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh -l
 
 echo "Hello $1"
-echo "answer=42" >> "$GITHUB_OUTPUT"
-echo "pid=$$" >> "$GITHUB_OUTPUT"
-echo "ls=$(ls -la ~)" >> "$GITHUB_OUTPUT"
+echo "::set-output answer=42"
+echo "::set-output pid=$$"
+echo "::set-output ls=$(ls -la)"
